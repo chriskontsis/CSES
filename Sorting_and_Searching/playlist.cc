@@ -5,6 +5,7 @@
 #include <algorithm> 
 #include <unordered_map>
 #include <climits>
+#include <unordered_set>
 
 using ll = long long int;
 using namespace std;
@@ -18,16 +19,20 @@ int main() {
     int n;
     cin >> n;
     vector<int> a(n), b(n);
+    int ans = 0;
 
-    for(int i = 0; i < n; i++) 
-        cin >> a[i], a[i]--;
+    for(int i = 0; i < n; i++)
+        cin >> a[i];
 
-    for(int i = 0; i < n; ++i) 
-        b[a[i]] = i;
+    unordered_map<int,int> map;
 
-    int ans = 1;
-    for(int i = 1; i <n; i++) 
-        ans+=b[i] < b[i-1];
+
+    for(int i = 0, j=0; i < n; i++) {
+       j = max(map[a[i]], j);
+
+       ans = max(ans, i-j+1);
+       map[a[i]] = i+1;
+    }
 
     cout << ans << '\n';
 }   

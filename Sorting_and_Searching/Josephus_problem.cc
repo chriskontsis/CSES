@@ -5,6 +5,7 @@
 #include <algorithm> 
 #include <unordered_map>
 #include <climits>
+#include <unordered_set>
 
 using ll = long long int;
 using namespace std;
@@ -14,20 +15,18 @@ const int mxN = 2e5*5;
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
+    cout.tie(0);
 
-    int n;
+    int n; 
     cin >> n;
-    vector<int> a(n), b(n);
 
-    for(int i = 0; i < n; i++) 
-        cin >> a[i], a[i]--;
 
-    for(int i = 0; i < n; ++i) 
-        b[a[i]] = i;
+    for(int i = 2; i <= n; i+=2) 
+        cout << i << " ";
+    for(int i = 1; i <= n; i+=4) 
+        cout << i << " ";
+    for(int i = 3; i <=n; i+=4) 
+        cout << i << " ";
 
-    int ans = 1;
-    for(int i = 1; i <n; i++) 
-        ans+=b[i] < b[i-1];
 
-    cout << ans << '\n';
 }   
